@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  Sports national riddles
 //
-//  Created by Dias Atudinov on 31.03.2026.
 //
 
 import SwiftUI
