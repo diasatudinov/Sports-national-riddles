@@ -1,0 +1,8 @@
+
+import SwiftUI
+
+class GBSettingsViewModel: ObservableObject {
+    @AppStorage("soundEnabled") var soundEnabled: Bool = true
+    @AppStorage("musicEnabled") var musicEnabled: Bool = true
+    @AppStorage("vibraEnabled") var vibraEnabled: Bool = true
+}
