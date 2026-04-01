@@ -73,15 +73,16 @@ struct SNSettingsView: View {
                 
             }.padding(24)
             
-        }.frame(maxWidth: .infinity)
-            .background(
-                ZStack {
-                    Image(.menuBgSN)
-                        .resizable()
-                        .ignoresSafeArea()
-                        .scaledToFill()
-                }
-            )
+        }
+        .frame(maxWidth: .infinity)
+        .background(
+            ZStack {
+                Image(.menuBgSN)
+                    .resizable()
+                    .ignoresSafeArea()
+                    .scaledToFill()
+            }
+        )
     }
 }
 

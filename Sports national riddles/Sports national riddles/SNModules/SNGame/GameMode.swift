@@ -1,3 +1,10 @@
+//
+//  GameMode.swift
+//  Sports national riddles
+//
+//
+
+
 import SwiftUI
 
 // MARK: - Game Mode
@@ -10,17 +17,17 @@ enum GameMode: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .inventory: return "Инвентарь"
-        case .terms: return "Термины"
+        case .inventory: return "Inventory"
+        case .terms: return "Terms"
         }
     }
 
     var questionText: String {
         switch self {
         case .inventory:
-            return "К какому спорту относится предмет на картинке?"
+            return "Which sport does the item in the picture belong to?"
         case .terms:
-            return "В каком виде спорта используется этот термин?"
+            return "Which sport does this term belong to?"
         }
     }
 }
@@ -33,71 +40,72 @@ enum Sport: String, CaseIterable, Hashable {
     case tennis
     case hockey
     case volleyball
-
     case rugby
+
     case golf
     case boxing
     case swimming
     case skiing
-
     case snowboarding
+
     case cycling
     case tableTennis
-    case baseball
+    case badminton
+    case cricket
     case handball
-
     case bowling
+
+    case fencing
     case archery
     case surfing
-    case cricket
-    case athletics
-
-    case martialArts
-    case gymnastics
     case skateboarding
+    case weightlifting
+    case gymnastics
+
+    case wrestling
+    case judo
+    case karate
     case americanFootball
-    case figureSkating
+    case horseRiding
+    case iceSkating
 
     var title: String {
         switch self {
-        case .football: return "Футбол"
-        case .basketball: return "Баскетбол"
-        case .tennis: return "Теннис"
-        case .hockey: return "Хоккей"
-        case .volleyball: return "Волейбол"
+        case .football: return "Football"
+        case .basketball: return "Basketball"
+        case .tennis: return "Tennis"
+        case .hockey: return "Hockey"
+        case .volleyball: return "Volleyball"
+        case .rugby: return "Rugby"
 
-        case .rugby: return "Регби"
-        case .golf: return "Гольф"
-        case .boxing: return "Бокс"
-        case .swimming: return "Плавание"
-        case .skiing: return "Лыжи"
+        case .golf: return "Golf"
+        case .boxing: return "Boxing"
+        case .swimming: return "Swimming"
+        case .skiing: return "Skiing"
+        case .snowboarding: return "Snowboarding"
 
-        case .snowboarding: return "Сноуборд"
-        case .cycling: return "Велоспорт"
-        case .tableTennis: return "Настольный теннис"
-        case .baseball: return "Бейсбол"
-        case .handball: return "Гандбол"
+        case .cycling: return "Cycling"
+        case .tableTennis: return "Table Tennis"
+        case .badminton: return "Badminton"
+        case .cricket: return "Cricket"
+        case .handball: return "Handball"
+        case .bowling: return "Bowling"
 
-        case .bowling: return "Боулинг"
-        case .archery: return "Стрельба из лука"
-        case .surfing: return "Серфинг"
-        case .cricket: return "Крикет"
-        case .athletics: return "Лёгкая атлетика"
+        case .fencing: return "Fencing"
+        case .archery: return "Archery"
+        case .surfing: return "Surfing"
+        case .skateboarding: return "Skateboarding"
+        case .weightlifting: return "Weightlifting"
+        case .gymnastics: return "Gymnastics"
 
-        case .martialArts: return "Единоборства"
-        case .gymnastics: return "Гимнастика"
-        case .skateboarding: return "Скейтбординг"
-        case .americanFootball: return "Американский футбол"
-        case .figureSkating: return "Фигурное катание"
+        case .wrestling: return "Wrestling"
+        case .judo: return "Judo"
+        case .karate: return "Karate"
+        case .americanFootball: return "American Football"
+        case .horseRiding: return "Horse Riding"
+        case .iceSkating: return "Ice Skating"
         }
     }
-}
-
-// MARK: - Question Visual
-
-enum QuestionVisual: Hashable {
-    case image(String)
-    case text(String)
 }
 
 // MARK: - Models
@@ -105,7 +113,7 @@ enum QuestionVisual: Hashable {
 struct BingoQuestion: Identifiable, Hashable {
     let id: String
     let sport: Sport
-    let visual: QuestionVisual
+    let imageName: String
 }
 
 struct BoardCell: Identifiable, Hashable {
@@ -118,76 +126,80 @@ struct BoardCell: Identifiable, Hashable {
 
 enum QuestionBank {
     static let inventory: [BingoQuestion] = [
-        .init(id: "inv_football", sport: .football, visual: .image("item_football_ball")),
-        .init(id: "inv_basketball", sport: .basketball, visual: .image("item_basketball_ball")),
-        .init(id: "inv_tennis", sport: .tennis, visual: .image("item_tennis_racket")),
-        .init(id: "inv_hockey", sport: .hockey, visual: .image("item_hockey_stick")),
-        .init(id: "inv_volleyball", sport: .volleyball, visual: .image("item_volleyball_ball")),
+        .init(id: "inv_football", sport: .football, imageName: "inv_football_ball"),
+        .init(id: "inv_basketball", sport: .basketball, imageName: "inv_basketball_ball"),
+        .init(id: "inv_tennis", sport: .tennis, imageName: "inv_tennis_racket"),
+        .init(id: "inv_hockey", sport: .hockey, imageName: "inv_hockey_stick"),
+        .init(id: "inv_volleyball", sport: .volleyball, imageName: "inv_volleyball_ball"),
+        .init(id: "inv_rugby", sport: .rugby, imageName: "inv_rugby_ball"),
 
-        .init(id: "inv_rugby", sport: .rugby, visual: .image("item_rugby_ball")),
-        .init(id: "inv_golf", sport: .golf, visual: .image("item_golf_club")),
-        .init(id: "inv_boxing", sport: .boxing, visual: .image("item_boxing_gloves")),
-        .init(id: "inv_swimming", sport: .swimming, visual: .image("item_swimming_goggles")),
-        .init(id: "inv_skiing", sport: .skiing, visual: .image("item_skis")),
+        .init(id: "inv_golf", sport: .golf, imageName: "inv_golf_club"),
+        .init(id: "inv_boxing", sport: .boxing, imageName: "inv_boxing_gloves"),
+        .init(id: "inv_swimming", sport: .swimming, imageName: "inv_swimming_goggles"),
+        .init(id: "inv_skiing", sport: .skiing, imageName: "inv_skis"),
+        .init(id: "inv_snowboarding", sport: .snowboarding, imageName: "inv_snowboard"),
 
-        .init(id: "inv_snowboarding", sport: .snowboarding, visual: .image("item_snowboard")),
-        .init(id: "inv_cycling", sport: .cycling, visual: .image("item_cycling_helmet")),
-        .init(id: "inv_table_tennis", sport: .tableTennis, visual: .image("item_pingpong_paddle")),
-        .init(id: "inv_baseball", sport: .baseball, visual: .image("item_baseball_bat")),
-        .init(id: "inv_handball", sport: .handball, visual: .image("item_handball_goal")),
+        .init(id: "inv_cycling", sport: .cycling, imageName: "inv_cycling_helmet"),
+        .init(id: "inv_table_tennis", sport: .tableTennis, imageName: "inv_table_tennis_paddle"),
+        .init(id: "inv_badminton", sport: .badminton, imageName: "inv_shuttlecock"),
+        .init(id: "inv_cricket", sport: .cricket, imageName: "inv_cricket_bat"),
+        .init(id: "inv_handball", sport: .handball, imageName: "inv_handball_goal"),
+        .init(id: "inv_bowling", sport: .bowling, imageName: "inv_bowling_ball"),
 
-        .init(id: "inv_bowling", sport: .bowling, visual: .image("item_bowling_ball")),
-        .init(id: "inv_archery", sport: .archery, visual: .image("item_bow")),
-        .init(id: "inv_surfing", sport: .surfing, visual: .image("item_surfboard")),
-        .init(id: "inv_cricket", sport: .cricket, visual: .image("item_cricket_bat")),
-        .init(id: "inv_athletics", sport: .athletics, visual: .image("item_running_spikes")),
+        .init(id: "inv_fencing", sport: .fencing, imageName: "inv_fencing_sword"),
+        .init(id: "inv_archery", sport: .archery, imageName: "inv_bow"),
+        .init(id: "inv_surfing", sport: .surfing, imageName: "inv_surfboard"),
+        .init(id: "inv_skateboarding", sport: .skateboarding, imageName: "inv_skateboard"),
+        .init(id: "inv_weightlifting", sport: .weightlifting, imageName: "inv_barbell"),
+        .init(id: "inv_gymnastics", sport: .gymnastics, imageName: "inv_gymnastic_rings"),
 
-        .init(id: "inv_martial_arts", sport: .martialArts, visual: .image("item_belt")),
-        .init(id: "inv_gymnastics", sport: .gymnastics, visual: .image("item_rings")),
-        .init(id: "inv_skateboarding", sport: .skateboarding, visual: .image("item_skateboard")),
-        .init(id: "inv_american_football", sport: .americanFootball, visual: .image("item_football_helmet")),
-        .init(id: "inv_figure_skating", sport: .figureSkating, visual: .image("item_skates"))
+        .init(id: "inv_wrestling", sport: .wrestling, imageName: "inv_wrestling_mask"),
+        .init(id: "inv_judo", sport: .judo, imageName: "inv_judo_belt"),
+        .init(id: "inv_karate", sport: .karate, imageName: "inv_karate_board"),
+        .init(id: "inv_american_football", sport: .americanFootball, imageName: "inv_american_football_helmet"),
+        .init(id: "inv_horse_riding", sport: .horseRiding, imageName: "inv_saddle"),
+        .init(id: "inv_ice_skating", sport: .iceSkating, imageName: "inv_ice_skates")
     ]
 
     static let terms: [BingoQuestion] = [
-        .init(id: "term_offside", sport: .football, visual: .text("Офсайд")),
-        .init(id: "term_slam_dunk", sport: .basketball, visual: .text("Слэм-данк")),
-        .init(id: "term_ace", sport: .tennis, visual: .text("Эйс")),
-        .init(id: "term_power_play", sport: .hockey, visual: .text("Power play")),
-        .init(id: "term_block", sport: .volleyball, visual: .text("Блок")),
+        .init(id: "term_offside", sport: .football, imageName: "term_offside"),
+        .init(id: "term_slam_dunk", sport: .basketball, imageName: "term_slam_dunk"),
+        .init(id: "term_ace", sport: .tennis, imageName: "term_ace"),
+        .init(id: "term_power_play", sport: .hockey, imageName: "term_power_play"),
+        .init(id: "term_block", sport: .volleyball, imageName: "term_block"),
+        .init(id: "term_try", sport: .rugby, imageName: "term_try"),
 
-        .init(id: "term_try", sport: .rugby, visual: .text("Try")),
-        .init(id: "term_birdie", sport: .golf, visual: .text("Birdie")),
-        .init(id: "term_knockout", sport: .boxing, visual: .text("Knockout")),
-        .init(id: "term_freestyle", sport: .swimming, visual: .text("Freestyle")),
-        .init(id: "term_slalom", sport: .skiing, visual: .text("Slalom")),
+        .init(id: "term_birdie", sport: .golf, imageName: "term_birdie"),
+        .init(id: "term_knockout", sport: .boxing, imageName: "term_knockout"),
+        .init(id: "term_freestyle", sport: .swimming, imageName: "term_freestyle"),
+        .init(id: "term_slalom", sport: .skiing, imageName: "term_slalom"),
+        .init(id: "term_halfpipe", sport: .snowboarding, imageName: "term_halfpipe"),
 
-        .init(id: "term_halfpipe", sport: .snowboarding, visual: .text("Halfpipe")),
-        .init(id: "term_peloton", sport: .cycling, visual: .text("Peloton")),
-        .init(id: "term_spin", sport: .tableTennis, visual: .text("Spin")),
-        .init(id: "term_home_run", sport: .baseball, visual: .text("Home run")),
-        .init(id: "term_7meter", sport: .handball, visual: .text("7-метровый бросок")),
+        .init(id: "term_peloton", sport: .cycling, imageName: "term_peloton"),
+        .init(id: "term_spin", sport: .tableTennis, imageName: "term_spin"),
+        .init(id: "term_smash", sport: .badminton, imageName: "term_smash"),
+        .init(id: "term_wicket", sport: .cricket, imageName: "term_wicket"),
+        .init(id: "term_7meter_throw", sport: .handball, imageName: "term_7meter_throw"),
+        .init(id: "term_strike", sport: .bowling, imageName: "term_strike"),
 
-        .init(id: "term_strike", sport: .bowling, visual: .text("Strike")),
-        .init(id: "term_bullseye", sport: .archery, visual: .text("Bullseye")),
-        .init(id: "term_tube_ride", sport: .surfing, visual: .text("Tube ride")),
-        .init(id: "term_wicket", sport: .cricket, visual: .text("Wicket")),
-        .init(id: "term_steeplechase", sport: .athletics, visual: .text("Steeplechase")),
+        .init(id: "term_riposte", sport: .fencing, imageName: "term_riposte"),
+        .init(id: "term_bullseye", sport: .archery, imageName: "term_bullseye"),
+        .init(id: "term_tube_ride", sport: .surfing, imageName: "term_tube_ride"),
+        .init(id: "term_kickflip", sport: .skateboarding, imageName: "term_kickflip"),
+        .init(id: "term_clean_and_jerk", sport: .weightlifting, imageName: "term_clean_and_jerk"),
+        .init(id: "term_vault", sport: .gymnastics, imageName: "term_vault"),
 
-        .init(id: "term_ippon", sport: .martialArts, visual: .text("Ippon")),
-        .init(id: "term_vault", sport: .gymnastics, visual: .text("Vault")),
-        .init(id: "term_kickflip", sport: .skateboarding, visual: .text("Kickflip")),
-        .init(id: "term_touchdown", sport: .americanFootball, visual: .text("Touchdown")),
-        .init(id: "term_axel", sport: .figureSkating, visual: .text("Axel"))
+        .init(id: "term_suplex", sport: .wrestling, imageName: "term_suplex"),
+        .init(id: "term_ippon", sport: .judo, imageName: "term_ippon"),
+        .init(id: "term_kata", sport: .karate, imageName: "term_kata"),
+        .init(id: "term_touchdown", sport: .americanFootball, imageName: "term_touchdown"),
+        .init(id: "term_dressage", sport: .horseRiding, imageName: "term_dressage"),
+        .init(id: "term_axel", sport: .iceSkating, imageName: "term_axel")
     ]
 
     static func questions(for sport: Sport, mode: GameMode) -> [BingoQuestion] {
-        switch mode {
-        case .inventory:
-            return inventory.filter { $0.sport == sport }
-        case .terms:
-            return terms.filter { $0.sport == sport }
-        }
+        let source = mode == .inventory ? inventory : terms
+        return source.filter { $0.sport == sport }
     }
 }
 
@@ -233,7 +245,7 @@ final class SportBingoViewModel: ObservableObject {
         if board[index].sport == currentQuestion.sport {
             board[index].isMarked = true
             usedQuestionIDs.insert(currentQuestion.id)
-            feedbackText = "Верно!"
+            feedbackText = "Correct!"
 
             if hasBingo() {
                 isBingoPresented = true
@@ -241,7 +253,7 @@ final class SportBingoViewModel: ObservableObject {
                 loadNextQuestion()
             }
         } else {
-            feedbackText = "Неверно, попробуйте ещё"
+            feedbackText = "Wrong answer. Try again."
         }
     }
 
@@ -257,36 +269,31 @@ final class SportBingoViewModel: ObservableObject {
 
         let all = QuestionBank.questions(for: sport, mode: mode)
         let unused = all.filter { !usedQuestionIDs.contains($0.id) }
-
         currentQuestion = (unused.isEmpty ? all : unused).randomElement()
     }
 
     private func hasBingo() -> Bool {
         guard board.count == 25 else { return false }
 
-        // Rows
         for row in 0..<5 {
-            let rowComplete = (0..<5).allSatisfy { column in
+            let complete = (0..<5).allSatisfy { column in
                 board[row * 5 + column].isMarked
             }
-            if rowComplete { return true }
+            if complete { return true }
         }
 
-        // Columns
         for column in 0..<5 {
-            let columnComplete = (0..<5).allSatisfy { row in
+            let complete = (0..<5).allSatisfy { row in
                 board[row * 5 + column].isMarked
             }
-            if columnComplete { return true }
+            if complete { return true }
         }
 
-        // Main diagonal
         let mainDiagonal = (0..<5).allSatisfy { index in
             board[index * 5 + index].isMarked
         }
         if mainDiagonal { return true }
 
-        // Secondary diagonal
         let secondaryDiagonal = (0..<5).allSatisfy { index in
             board[index * 5 + (4 - index)].isMarked
         }
@@ -298,81 +305,141 @@ final class SportBingoViewModel: ObservableObject {
 
 // MARK: - View
 
-struct SportBingoView: View {
+struct SportBingoGameView: View {
+    let mode: GameMode
+    let onBackToMenu: () -> Void
+
     @StateObject private var viewModel = SportBingoViewModel()
-    @State private var selectedMode: GameMode = .inventory
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 8), count: 5)
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 16) {
-                    Picker("Режим", selection: $selectedMode) {
-                        ForEach(GameMode.allCases) { mode in
-                            Text(mode.title).tag(mode)
+        ScrollView {
+            VStack(spacing: 16) {
+                
+                
+                HStack {
+                    Button {
+                        onBackToMenu()
+                    } label: {
+                        Image(.backIconSN)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 60)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                VStack(spacing: 10) {
+                    Text(viewModel.questionText)
+                        .font(.system(size: 20, weight: .bold))
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.appYellow)
+                        .textCase(.uppercase)
+                    
+                    QuestionCardView(question: viewModel.currentQuestion)
+                }
+                
+                if !viewModel.feedbackText.isEmpty {
+                    Text(viewModel.feedbackText)
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                } else {
+                    Text("text")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.secondary.opacity(0))
+                }
+                
+                LazyVGrid(columns: columns, spacing: 8) {
+                    ForEach(viewModel.board) { cell in
+                        Button {
+                            viewModel.select(cell)
+                        } label: {
+                            SportCellView(cell: cell)
                         }
-                    }
-                    .pickerStyle(.segmented)
-
-                    VStack(spacing: 10) {
-                        Text(viewModel.questionText)
-                            .font(.headline)
-                            .multilineTextAlignment(.center)
-
-                        QuestionCardView(question: viewModel.currentQuestion)
-                    }
-
-                    if !viewModel.feedbackText.isEmpty {
-                        Text(viewModel.feedbackText)
-                            .font(.subheadline.weight(.semibold))
-                            .foregroundStyle(.secondary)
-                    }
-
-                    LazyVGrid(columns: columns, spacing: 8) {
-                        ForEach(viewModel.board) { cell in
-                            Button {
-                                viewModel.select(cell)
-                            } label: {
-                                SportCellView(cell: cell)
-                            }
-                            .buttonStyle(.plain)
-                            .disabled(cell.isMarked || viewModel.isBingoPresented)
-                        }
-                    }
-
-                    HStack {
-                        Text("Отмечено: \(viewModel.markedCount)/25")
-                            .font(.subheadline)
-
-                        Spacer()
-
-                        Button("Новая игра") {
-                            viewModel.startNewGame(mode: selectedMode)
-                        }
-                        .buttonStyle(.borderedProminent)
+                        .buttonStyle(.plain)
+                        .disabled(cell.isMarked || viewModel.isBingoPresented)
                     }
                 }
-                .padding()
-            }
-            .navigationTitle("Sport Bingo")
-            .task {
-                if viewModel.board.isEmpty {
-                    viewModel.startNewGame(mode: selectedMode)
+                
+                HStack {
+                    Text("Marked: \(viewModel.markedCount)/25")
+                        .font(.subheadline)
+                    
+                    Spacer()
                 }
             }
-            .onChange(of: selectedMode) { newValue in
-                viewModel.startNewGame(mode: newValue)
-            }
-            .alert("Бинго!", isPresented: $viewModel.isBingoPresented) {
-                Button("Новая игра") {
-                    viewModel.startNewGame(mode: selectedMode)
-                }
-                Button("ОК", role: .cancel) { }
-            } message: {
-                Text("Вы собрали линию из пяти отмеченных ячеек.")
-            }
+            .padding()
+            
         }
+        .overlay(content: {
+            if viewModel.isBingoPresented {
+                ZStack {
+                    
+                    Color.black.opacity(0.8).ignoresSafeArea()
+                    
+                    Image(.bingoBg)
+                        .resizable()
+                        .scaledToFit()
+                    
+                    VStack {
+                        Image(.flagsSN)
+                            .resizable()
+                            .scaledToFit()
+                        
+                        Spacer()
+                    }
+                    
+                    Image(.winSN)
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.horizontal, 50)
+                        .overlay {
+                            VStack {
+                                Button {
+                                    viewModel.startNewGame(mode: mode)
+                                } label: {
+                                    Image(.againBtnSN)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 65)
+                                }
+                                
+                                Button {
+                                    onBackToMenu()
+                                } label: {
+                                    Image(.modeBtnSN)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 65)
+                                }
+                                
+                                Button {
+                                    onBackToMenu()
+                                } label: {
+                                    Image(.menuBtnSN)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 65)
+                                }
+                            }
+                            .padding(.top, 32)
+                        }
+                    
+                }
+            }
+        })
+        .task {
+            viewModel.startNewGame(mode: mode)
+        }
+        .background(
+            ZStack {
+                Image(.menuBgSN)
+                    .resizable()
+                    .ignoresSafeArea()
+                    .scaledToFill()
+            }
+        )
     }
 }
 
@@ -383,34 +450,16 @@ struct QuestionCardView: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.blue.opacity(0.08))
-
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(Color.blue.opacity(0.2), lineWidth: 1)
-
             Group {
                 if let question {
-                    switch question.visual {
-                    case .image(let imageName):
-                        Image(imageName)
-                            .resizable()
-                            .scaledToFit()
-                            .padding(20)
-
-                    case .text(let term):
-                        Text(term)
-                            .font(.system(size: 30, weight: .bold, design: .rounded))
-                            .multilineTextAlignment(.center)
-                            .minimumScaleFactor(0.6)
-                            .padding(20)
-                    }
+                    Image(question.imageName)
+                        .resizable()
+                        .scaledToFit()
                 } else {
                     ProgressView()
                 }
             }
         }
-        .frame(height: 220)
     }
 }
 
@@ -419,26 +468,118 @@ struct SportCellView: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 14)
-                .fill(cell.isMarked ? Color.green.opacity(0.85) : Color.blue.opacity(0.12))
+            RoundedRectangle(cornerRadius: 6)
+                .fill(cell.isMarked ? Color.white.opacity(0.12) : Color.white)
 
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(cell.isMarked ? Color.green : Color.blue.opacity(0.25), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 6)
+                .stroke(cell.isMarked ? Color.clear : Color.secondary.opacity(0.25), lineWidth: 1)
 
             Text(cell.sport.title)
-                .font(.system(size: 12, weight: .semibold))
+                .font(.system(size: 10, weight: .semibold))
                 .multilineTextAlignment(.center)
                 .lineLimit(2)
                 .minimumScaleFactor(0.7)
                 .foregroundStyle(.primary)
                 .padding(6)
+            
+            if cell.isMarked {
+                Image(.checkSN)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 45)
+            }
         }
-        .frame(height: 62)
+        .frame(height: 65)
     }
 }
 
-// MARK: - Preview
+struct SportBingoRootView: View {
+    @State private var selectedMode: GameMode?
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if let selectedMode {
+                    SportBingoGameView(
+                        mode: selectedMode,
+                        onBackToMenu: {
+                            self.selectedMode = nil
+                        }
+                    )
+                } else {
+                    ModeSelectionView { mode in
+                        selectedMode = mode
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct ModeSelectionView: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    let onSelectMode: (GameMode) -> Void
+
+    var body: some View {
+        ZStack {
+
+            VStack(spacing: 24) {
+                HStack {
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                        
+                    } label: {
+                        Image(.backIconSN)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 60)
+                    }
+                    
+                    Text("Select Game Mode")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(.appYellow)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+
+                VStack(spacing: 16) {
+                    Button {
+                        onSelectMode(.inventory)
+                    } label: {
+                        Image("InventorySN")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 87)
+                       
+                    }
+
+                    Button {
+                        onSelectMode(.terms)
+                    } label: {
+                        Image("TermsSN")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 87)
+                    }
+                }
+                .padding(.top, 150)
+
+                Spacer()
+            }
+            .padding(24)
+        }
+        .navigationBarHidden(true)
+        .background(
+            ZStack {
+                Image(.menuBgSN)
+                    .resizable()
+                    .ignoresSafeArea()
+                    .scaledToFill()
+            }
+        )
+    }
+}
 
 #Preview {
-    SportBingoView()
+    SportBingoRootView()
 }

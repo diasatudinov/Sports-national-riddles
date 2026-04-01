@@ -78,12 +78,10 @@ struct SNMenuView: View {
                 }
             )
             .fullScreenCover(isPresented: $showGame) {
-                NavigationStack {
-                    //                    ChooseTopicView()
-                }
+                SportBingoRootView()
             }
             .fullScreenCover(isPresented: $showInstructions) {
-                //                GBInstructionsView()
+                SNInstructionsView()
             }
             .fullScreenCover(isPresented: $showSettings) {
                 SNSettingsView()
