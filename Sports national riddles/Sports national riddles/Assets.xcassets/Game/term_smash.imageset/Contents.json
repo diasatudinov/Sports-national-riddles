@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "term_smash.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

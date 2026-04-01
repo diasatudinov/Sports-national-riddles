@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "term_spin.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

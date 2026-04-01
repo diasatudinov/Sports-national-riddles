@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "checkSN.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
